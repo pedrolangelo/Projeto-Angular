@@ -1,0 +1,65 @@
+<app-contato-criado></app-contato-criado>
+<div class="card mt-3">
+  <div class="card-header">
+    <div class="float-left">
+      <h4>Agenda</h4>
+    </div>
+    <div class="float-right">
+      <button type="button" class="btn btn-primary" [routerLink]="['novo']">
+        Novo Contato
+      </button>
+    </div>
+  </div>
+  <div class="card-body">
+    <table
+      class="table table-hover"
+      *ngIf="agenda$ | async as agenda; else erro"
+    >
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Contato</th>
+          <th>Telefone</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let agenda of agenda$ | async">
+          <td>{{ agenda.id }}</td>
+          <a [routerLink]="['detalhe', agenda.id]" style="color: black">
+            <td>{{ agenda.nome }}</td>
+          </a>
+          <td>{{ agenda.telefone }}</td>
+          <td>
+            <span class="float-right">
+              <button
+                class="btn btn-outline-primary"
+                (click)="onEdit(agenda.id)"
+              >
+                Atualizar
+              </button>
+              {{ " " }}
+              <button class="btn btn-outline-dark" (click)="onRemover(agenda.id)">
+                Remover
+              </button>
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <ng-template #erro>
+      <div>Erro ao carregar</div>
+    </ng-template>
+  </div>
+
+  <ng-template #deleteModal>
+    <div class="modal-body text-center">
+      <p>Quer excluir esse contato?</p>
+      <button type="button" class="btn btn-default" (click)="onConfirmDelete()">Sim</button>
+      <button type="button" class="btn btn-primary" (click)="onDeclineDelete()">Não</button>
+    </div>
+  </ng-template>
+</div>
+
+<router-outlet></router-outlet>

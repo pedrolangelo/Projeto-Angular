@@ -1,0 +1,23 @@
+http://localhost:3000/agenda
+
+###
+
+POST http://localhost:3000/agenda HTTP/1.1
+content-type: application/json
+
+{
+    "nome": "Ramiro"
+}
+
+###
+
+PUT http://localhost:3000/agenda/2 HTTP/1.1
+content-type: application/json
+
+{
+    "nome": "Lucas"
+}
+
+###
+
+DELETE http://localhost:3000/agenda/2

@@ -1,0 +1,33 @@
+<div class="conteiner">
+  <form [formGroup]="formulario" style="padding-top: 15px;">
+    <label for="nome">Nome</label>
+    <input
+      type="text"
+      class="form-control"
+      id="nome"
+      placeholder="Nome"
+      formControlName="nome"
+      [ngClass]="{ 'is-invalid': flag && formulario.get('nome').errors}"
+    />
+    <div class="invalid-feedback">Nome é obrigatorio</div>
+
+    <br>
+
+    <label for="telefone">Telefone</label>
+    <input
+      type="text"
+      class="form-control"
+      id="telefone"
+      placeholder="Telefone"
+      formControlName="telefone"
+      [ngClass]="{ 'is-invalid': flag && formulario.get('telefone').errors}"
+    />
+    <div class="invalid-feedback">Telefone é obrigatorio</div>
+    <br>
+    <button type="submit" class="btn btn-primary" (click)="onSubmit()">
+      Salvar
+    </button>
+  </form>
+</div>
+
+<router-outlet></router-outlet>
